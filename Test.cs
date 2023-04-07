@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using ControllerExChanges.Controller;
 using Microsoft.Extensions.DependencyInjection;
 
+
 namespace ConsoleTest
 {
     internal class Test
@@ -19,7 +20,7 @@ namespace ConsoleTest
         internal Test()
         {
             IServiceCollection services = new ServiceCollection()
-        .AddSingleton<ILogger, Serilog.Core.Logger>();
+                                            .AddSingleton<ILogger, Serilog.Core.Logger>();
 
             IServiceProvider serviceProvider = services.BuildServiceProvider();
 
@@ -34,18 +35,25 @@ namespace ConsoleTest
             ConnectParametrs parametrs = _connector.ConnectParametrs;
 
             parametrs.ExchangeType = ExchangeType.LiveFutures;
-            parametrs.Login = "serg-225@mail.ru";
-            parametrs.Password = ",/?*xeRa";
-            parametrs.Path = "111";
+            parametrs.Login = "fomines@mail.ru";
+            parametrs.Password = "(iz'=V*&";
+            parametrs.Path = "http://193.161.214.142:8081";
 
 
             _connector.ConnectStatusChangeEvent += _connector_ConnectStatusChangeEvent1;
 
             _connector.NewTradeEvent += _connector_NewTradeEvent;
+            _connector.NewMarketDepthEvent += _connector_NewMarketDepthEvent;
             _connector.SecuritiesChangeEvent += Connector_SecuritiesChangeEvent;
             ConnectStatus state = _connector.Connect().Result;
 
             Console.WriteLine("Start ConnectStatus = " + state);
+        }
+
+        private void _connector_NewMarketDepthEvent(MarketDepth marketDepth)
+        {
+            if (marketDepth.Bids.Count > 0)
+                Console.WriteLine("Bid {0} Ask {1} ", marketDepth.Bids[0].Volume, marketDepth.Asks[0].Volume);
         }
 
         private void _connector_ConnectStatusChangeEvent1(ConnectStatus status)

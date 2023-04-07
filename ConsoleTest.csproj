@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <Reference Include="ControllerExChanges">
-      <HintPath>..\ConnectorsPRO\bin\Release\net6.0\publish\ControllerExChanges.dll</HintPath>
+      <HintPath>..\..\TP-PRO\ControllerExChanges\bin\Release\net6.0\publish\ControllerExChanges.dll</HintPath>
     </Reference>
   </ItemGroup>
 
