@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ControllerExChanges.Controller;
 using Microsoft.Extensions.DependencyInjection;
-
+using ControllerExChanges.Connectors.RandomData;
 
 namespace ConsoleTest
 {
@@ -28,17 +28,18 @@ namespace ConsoleTest
 
             Controller controller = Controller.GetController(log);
 
-            _connector = controller.CreateConnector(ExchangeType.LiveFutures);
+            _connector = controller.CreateConnector(ExchangeType.RandomConnector);
 
             if (_connector == null) return;
 
-            ConnectParametrs parametrs = _connector.ConnectParametrs;
+            //ConnectParametrs parametrs = _connector.ConnectParametrs;
 
-            parametrs.ExchangeType = ExchangeType.RandomConnector;
-            parametrs.Login = "serg-225@mail.ru";
-            parametrs.Password = "=Ss*#]Vt";
-            parametrs.Path = "http://193.161.214.142:8081";
+            //parametrs.ExchangeType = ExchangeType.RandomConnector;
+            //parametrs.Login = "serg-225@mail.ru";
+            //parametrs.Password = "=Ss*#]Vt";
+            //parametrs.Path = "http://193.161.214.142:8081";
 
+            ((RandomConnector)_connector).SetParams(70000, step: 1);
 
             _connector.ConnectStatusChangeEvent += _connector_ConnectStatusChangeEvent1;
 
