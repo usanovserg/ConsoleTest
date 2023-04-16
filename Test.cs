@@ -34,9 +34,9 @@ namespace ConsoleTest
 
             ConnectParametrs parametrs = _connector.ConnectParametrs;
 
-            parametrs.ExchangeType = ExchangeType.LiveFutures;
-            parametrs.Login = "fomines@mail.ru";
-            parametrs.Password = "(iz'=V*&";
+            parametrs.ExchangeType = ExchangeType.RandomConnector;
+            parametrs.Login = "serg-225@mail.ru";
+            parametrs.Password = "=Ss*#]Vt";
             parametrs.Path = "http://193.161.214.142:8081";
 
 
